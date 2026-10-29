@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>湘西吊脚楼 · 手势交互体验</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-mark">湘</div>
+      <p class="eyebrow">INTERACTIVE HERITAGE · 01</p>
+      <h1>湘西吊脚楼</h1>
+      <p class="intro">以手为引，探索湘西木构建筑的层叠之美。通过自然手势旋转、切换与重置模型，让传统建筑在数字空间中焕发生机。</p>
+      <div class="section-label"><span class="live-dot"></span> 实时摄像头预览</div>
+      <div class="camera-box">
+        <video id="camera" autoplay playsinline muted></video>
+        <canvas id="cameraOverlay"></canvas>
+        <div class="camera-placeholder" id="cameraPlaceholder">
+          <span class="camera-icon">◉</span>
+          <span>等待摄像头启动</span>
+          <small>请允许浏览器访问摄像头</small>
+        </div>
+        <div class="camera-status" id="cameraStatus">CAMERA OFFLINE</div>
+      </div>
+      <button class="primary-button" id="cameraButton">启动手势识别 <span>↗</span></button>
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-name">手势连击</span><strong id="combo">00</strong><small>GESTURE COMBO</small></div>
+        <div class="stat-card"><span class="stat-name">当前展品</span><strong id="modelIndex">01<span>/03</span></strong><small id="modelName">吊脚楼</small></div>
+      </div>
+      <div class="panel-divider"></div>
+      <div class="section-label">氛围音效 <span class="tiny-tag">AMBIENCE</span></div>
+      <button class="music-button" id="musicButton"><span class="music-symbol">♫</span><span><b>山间夜曲</b><small id="musicState">背景音乐已关闭</small></span><span class="toggle" id="musicToggle"></span></button>
+      <div class="section-label gesture-heading">手势操作说明</div>
+      <div class="gesture-list">
+        <div class="gesture-item"><span class="gesture-emoji">✋</span><span><b>张开手掌</b><small>左右移动手掌，旋转建筑</small></span><kbd>ROTATE</kbd></div>
+        <div class="gesture-item"><span class="gesture-emoji">⇆</span><span><b>左右横向挥手</b><small>切换建筑展品模型</small></span><kbd>SWIPE</kbd></div>
+        <div class="gesture-item"><span class="gesture-emoji">✊</span><span><b>握拳</b><small>重置模型并触发闪光</small></span><kbd>RESET</kbd></div>
+      </div>
+      <p class="privacy-note">◈ 摄像头画面仅在当前浏览器本地处理</p>
+    </aside>
+    <main class="stage">
+      <div class="stage-top">
+        <div><span class="stage-kicker">DIGITAL CRAFT · XR EXHIBITION</span><h2>传统木构 · 数字新生</h2></div>
+        <div class="top-right"><span class="online-dot"></span> <span id="stageStatus">交互待启动</span><span class="top-divider"></span><span>VOL. 01</span></div>
+      </div>
+      <div id="scene"></div>
+      <div class="scene-vignette"></div>
+      <div class="scene-caption"><span class="caption-line"></span><div><small>FEATURED ARCHITECTURE</small><h3 id="sceneTitle">湘西吊脚楼</h3><p id="sceneDescription">依山而建 · 临水而居 · 木构之美</p></div></div>
+      <div class="scene-controls"><span class="control-hint"><i>↔</i> 拖动旋转</span><span class="control-hint"><i>＋</i> 滚轮缩放</span><button id="resetButton" title="重置视角">⟲ 重置视角</button></div>
+      <div class="scene-index"><span id="sceneNumber">01</span><span class="index-rule"></span><span>03</span></div>
+      <div class="interaction-toast" id="toast">模型视角已重置</div>
+      <div class="bottom-note">A DIGITAL EXPERIENCE OF XIANGXI ARCHITECTURE <span>© 2026</span></div>
+    </main>
+  </div>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
